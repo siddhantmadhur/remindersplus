@@ -7,6 +7,7 @@ function Home() {
   const [tasks, setTasks] = useState([])
   const [pen, setPen] = useState('')
 
+  useEffect(() => { console.log(tasks) }, [tasks])
 
   return (
     <React.Fragment>
@@ -33,18 +34,28 @@ function Home() {
         </div>
         <div className='flex justify-center'>
           <div className='flex flex-col gap-y-3'>
-          {
-            tasks.map((e)=>(
-              <div className='flex gap-x-5'>
-                <div>
-                  <input type="radio" />
+            {
+              tasks.map((e, index) => (
+                <div className='flex gap-x-5'>
+                  <div>
+                    <button onClick={() => {
+                      let temp = []
+                      for (let i = 0; i < tasks.length; i++) {
+                        if (i !== index) {
+                          temp.push(tasks[i])
+                        }
+                      }
+                      setTasks(temp)
+                    }}>
+                      ❌
+                    </button>
+                  </div>
+                  <div>
+                    {e}
+                  </div>
                 </div>
-                <div>
-                  {e}
-                </div>
-              </div>
-            ))
-          }
+              ))
+            }
           </div>
         </div>
       </main>
