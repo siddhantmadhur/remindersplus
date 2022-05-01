@@ -1,28 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
 function Home() {
+
+  const [tasks, setTasks] = useState([])
+  const [pen, setPen] = useState('')
+
+
   return (
     <React.Fragment>
       <Head>
-        <title>Home - Nextron (with-javascript-tailwindcss)</title>
+        <title>Reminders+</title>
       </Head>
-      <div className='grid grid-col-1 text-2xl w-full text-center'>
-        <img className='ml-auto mr-auto' src='/images/logo.png' />
-        <span>⚡ Electron ⚡</span>
-        <span>+</span>
-        <span>Next.js</span>
-        <span>+</span>
-        <span>tailwindcss</span>
-        <span>=</span>
-        <span>💕 </span>
-      </div>
-      <div className='mt-1 w-full flex-wrap flex justify-center'>
-        <Link href='/next'>
-          <a className='btn-blue'>Go to next page</a>
-        </Link>
-      </div>
+      <main className='flex flex-col gap-y-5'>
+        <div className='text-center text-3xl my-5'>
+          Reminders+
+        </div>
+        <div className='flex justify-center'>
+          <input className='text-black px-2 py-1 rounded-lg' type="text" placeholder='Reminder' onChange={e => setPen(e.target.value)} />
+
+        </div>
+        <div className='flex justify-center'>
+          <button
+            className='bg-gray-700 px-5 py-2'
+            onClick={() => {
+              const temp = [pen]
+              setTasks(tasks.concat(temp))
+            }}>
+            submit
+          </button>
+        </div>
+        <div className='flex justify-center'>
+          <div className='flex flex-col gap-y-3'>
+          {
+            tasks.map((e)=>(
+              <div className='flex gap-x-5'>
+                <div>
+                  <input type="radio" />
+                </div>
+                <div>
+                  {e}
+                </div>
+              </div>
+            ))
+          }
+          </div>
+        </div>
+      </main>
     </React.Fragment>
   );
 }
