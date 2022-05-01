@@ -7,7 +7,16 @@ function Home() {
   const [tasks, setTasks] = useState([])
   const [pen, setPen] = useState('')
 
-  useEffect(() => { console.log(tasks) }, [tasks])
+  useEffect(() => {
+    if(localStorage.getItem('tasks')===null){
+      setTasks([])
+    }else{
+      setTasks(JSON.parse(localStorage.getItem('tasks')))
+    }
+    
+  }, [])
+
+
 
   return (
     <React.Fragment>
@@ -28,6 +37,7 @@ function Home() {
             onClick={() => {
               const temp = [pen]
               setTasks(tasks.concat(temp))
+              localStorage.setItem('tasks', JSON.stringify(tasks.concat(temp)))
             }}>
             submit
           </button>
@@ -46,6 +56,7 @@ function Home() {
                         }
                       }
                       setTasks(temp)
+                      localStorage.setItem('tasks', JSON.stringify(temp))
                     }}>
                       ❌
                     </button>
