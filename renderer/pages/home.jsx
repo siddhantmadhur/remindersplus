@@ -8,12 +8,12 @@ function Home() {
   const [pen, setPen] = useState('')
 
   useEffect(() => {
-    if(localStorage.getItem('tasks')===null){
+    if (localStorage.getItem('tasks') === null) {
       setTasks([])
-    }else{
+    } else {
       setTasks(JSON.parse(localStorage.getItem('tasks')))
     }
-    
+
   }, [])
 
 
@@ -23,31 +23,33 @@ function Home() {
       <Head>
         <title>Reminders+</title>
       </Head>
-      <main className='flex flex-col gap-y-5'>
-        <div className='text-center text-3xl my-5'>
-          Reminders+
-        </div>
-        <div className='flex justify-center'>
-          <input className='text-black px-2 py-1 rounded-lg' type="text" placeholder='Reminder' onChange={e => setPen(e.target.value)} />
-
-        </div>
-        <div className='flex justify-center'>
-          <button
-            className='bg-gray-700 px-5 py-2'
-            onClick={() => {
+      <main className='flex flex-col gap-y-5 my-10'>
+        <div className='mx-20'>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            if (pen.length > 3) {
               const temp = [pen]
               setTasks(tasks.concat(temp))
               localStorage.setItem('tasks', JSON.stringify(tasks.concat(temp)))
-            }}>
-            submit
-          </button>
+              setPen("")
+            }
+          }}
+            className='flex justify-center flex-col  gap-y-4'
+          >
+            <input value={pen} className='text-black px-2 py-3  rounded-lg' type="text" placeholder='Reminder' onChange={e => setPen(e.target.value)} />
+            <input
+              className='bg-gray-700 px-5 py-2 hover:bg-gray-800 hover:text-gray-400 transition'
+              type='submit'
+              placeholder='submit'
+            />
+          </form>
         </div>
         <div className='flex justify-center'>
-          <div className='flex flex-col gap-y-3'>
+          <div className='flex flex-col gap-y-3 text-lg mx-40 w-full'>
             {
               tasks.map((e, index) => (
-                <div className='flex gap-x-5'>
-                  <div>
+                <div className='flex gap-x-5 '>
+                  <div className='hover:opacity-50'>
                     <button onClick={() => {
                       let temp = []
                       for (let i = 0; i < tasks.length; i++) {
@@ -58,14 +60,22 @@ function Home() {
                       setTasks(temp)
                       localStorage.setItem('tasks', JSON.stringify(temp))
                     }}>
-                      ❌
+                      <div className='flex gap-x-4'>
+                        <div>
+                          ❌
+                        </div>
+                        <div className='text-left'>
+                          {e}
+                        </div>
+                      </div>
+
                     </button>
                   </div>
                   <div>
-                    {e}
+
                   </div>
                 </div>
-              ))
+              )).reverse()
             }
           </div>
         </div>

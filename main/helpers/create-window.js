@@ -67,6 +67,7 @@ export default function createWindow(windowName, options) {
   state = ensureVisibleOnSomeDisplay(restore());
 
   win = new BrowserWindow({
+    autoHideMenuBar: true,
     ...options,
     ...state,
     webPreferences: {
