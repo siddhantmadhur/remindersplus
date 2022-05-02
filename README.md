@@ -11,11 +11,20 @@
  3. [Steps to report a bug](#Steps-to-report-a-bug)
 
 ## Downloads
-#### The app is still in development. Please check later.
+### Using the executable:
+#### The app is available to download here, just pick your version and download:
+[Releases](https://github.com/SiddhantMadhur/remindersplus/releases)
+
+OR
+### Using snap store
+```
+sudo snap install remindersplus
+```
 
 ## Tech Stack
-- Flutter
-- Supabase
+- Next.js
+- Tailwindcss
+- Electron
 
 ## Steps to report a bug
  - [ ] Find bug
