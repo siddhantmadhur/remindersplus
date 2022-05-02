@@ -73,6 +73,7 @@ export default function createWindow(windowName, options) {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
+      devTools: false,
       ...options.webPreferences,
     },
   });

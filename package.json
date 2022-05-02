@@ -1,17 +1,18 @@
 {
   "private": true,
-  "name": "RemindersPlus",
+  "name": "remindersplus",
   "description": "Reminder taking app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Siddhant Madhur <siddhant.madhur@gmail.com>",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "build:mac": "nextron build --mac --x64",
+    "build:win64": "nextron build --win --x64"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.35.2",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.0.1"
   },
