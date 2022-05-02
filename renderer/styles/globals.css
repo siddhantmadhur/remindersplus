@@ -13,6 +13,26 @@ body {
   @apply bg-gray-900 text-white font-Poppins;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(111, 111, 111);
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(53, 53, 53);
+}
 /* Write your own custom component styles here */
 .btn-blue {
   @apply px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600;

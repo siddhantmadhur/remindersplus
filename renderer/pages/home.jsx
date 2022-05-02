@@ -59,8 +59,8 @@ function Home({ data }) {
                 <>
                   {
                     e.status === 'incomplete' ? (
-                      <div className='bg-gray-700 flex gap-x-3 rounded-xl'>
-                        <div className='bg-green-600 hover:bg-green-800  rounded-l-xl'>
+                      <div className='bg-gray-700 flex gap-x-3 rounded-lg'>
+                        <div className='bg-green-600 hover:bg-green-800  rounded-l-lg'>
                           <button
                             onClick={() => {
                               console.log('dlick')
@@ -89,7 +89,7 @@ function Home({ data }) {
                         <div className='py-2 w-full'>
                           {e.task}
                         </div>
-                        <div className='px-3 bg-gray-800 rounded-r-xl  flex flex-col'>
+                        <div className='px-3 bg-gray-800 rounded-r-lg  flex flex-col'>
                           <div>
                             <button onClick={() => {
 
@@ -121,8 +121,8 @@ function Home({ data }) {
                 <>
                   {
                     e.status === 'complete' ? (
-                      <div className='bg-gray-700 flex gap-x-3 rounded-xl'>
-                        <div className='bg-yellow-600 hover:bg-yellow-800  rounded-l-xl'>
+                      <div className='bg-gray-700 flex gap-x-3 rounded-lg'>
+                        <div className='bg-yellow-600 hover:bg-yellow-800  rounded-l-lg'>
                           <button
                             onClick={() => {
                               console.log('dlick')
@@ -151,7 +151,7 @@ function Home({ data }) {
                         <div className='py-2 w-full'>
                           <s>{e.task}</s>
                         </div>
-                        <div className=' bg-red-600 hover:bg-red-700 rounded-r-xl '>
+                        <div className=' bg-red-600 hover:bg-red-700 rounded-r-lg '>
                           <button
                             onClick={() => {
                               let temp = []

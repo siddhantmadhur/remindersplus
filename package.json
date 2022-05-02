@@ -2,7 +2,7 @@
   "private": true,
   "name": "remindersplus",
   "description": "Reminder taking app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Siddhant Madhur <siddhant.madhur@gmail.com>",
   "main": "app/background.js",
   "scripts": {
