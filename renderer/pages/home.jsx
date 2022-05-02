@@ -41,9 +41,9 @@ function Home({ data }) {
           }}
             className='flex justify-center flex-col  gap-y-4'
           >
-            <input value={pen} className='text-black px-2 py-3  rounded-lg' type="text" placeholder='Reminder' onChange={e => setPen(e.target.value)} />
+            <input value={pen} className='text-black px-2 py-3 rounded-lg' type="text" placeholder='Reminder' onChange={e => setPen(e.target.value)} />
             <input
-              className='bg-gray-700 px-5 py-2 hover:bg-gray-800 hover:text-gray-400 transition'
+              className='bg-gray-700 px-5 py-2 text-xl rounded-lg hover:bg-gray-800 hover:text-gray-400 transition'
               type='submit'
               placeholder='submit'
             />
