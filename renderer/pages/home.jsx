@@ -5,20 +5,10 @@ import Link from 'next/link';
 
 function Home({ data }) {
 
-  const [tasks, setTasks] = useState([])
-  const [tempTasks, setTempTasks] = useState([{}])
+  const [tasks, setTasks] = useState([{}])
   const [pen, setPen] = useState('')
 
-  const tempdata = [
-    {
-      task: 'You have to clean',
-      status: 'incomplete'
-    },
-    {
-      task: 'You have to study',
-      status: 'incomplete'
-    }
-  ]
+
 
 
   useEffect(() => {
@@ -26,15 +16,6 @@ function Home({ data }) {
       setTasks([])
     } else {
       setTasks(JSON.parse(localStorage.getItem('tasks')))
-    }
-
-  }, [])
-
-  useEffect(() => {
-    if (localStorage.getItem('tempTasks') === null) {
-      setTempTasks([])
-    } else {
-      setTempTasks(JSON.parse(localStorage.getItem('tempTasks')))
     }
 
   }, [])
@@ -53,8 +34,8 @@ function Home({ data }) {
                 task: pen,
                 status: 'incomplete'
               }]
-              setTempTasks(tempTasks.concat(temp))
-              localStorage.setItem('tempTasks', JSON.stringify(tempTasks.concat(temp)))
+              setTasks(tasks.concat(temp))
+              localStorage.setItem('tasks', JSON.stringify(tasks.concat(temp)))
               setPen("")
             }
           }}
@@ -74,38 +55,58 @@ function Home({ data }) {
               Tasks to-do:
             </p>
             {
-              tempTasks.map((e, index) => (
+              tasks.map((e, index) => (
                 <>
                   {
                     e.status === 'incomplete' ? (
-                      <div className='hover:opacity-50 flex gap-x-5 '>
-                        <button onClick={() => {
-                          let temp = []
-                          for (let i = 0; i < tempTasks.length; i++) {
-                            if (i !== index) {
-                              temp.push(tempTasks[i])
-                            } else {
-                              temp.push({
-                                task: tempTasks[i].task,
-                                status: 'complete'
-                              })
-                            }
-                          }
-                          setTempTasks(temp)
-                          localStorage.setItem('tempTasks', JSON.stringify(temp))
-                        }}>
-                          <div className='flex gap-x-4'>
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
-                            <div className='text-left'>
-                              {e.task}
-                            </div>
-                          </div>
+                      <div className='bg-gray-700 flex gap-x-3 rounded-xl'>
+                        <div className='bg-green-600 hover:bg-green-800  rounded-l-xl'>
+                          <button
+                            onClick={() => {
+                              console.log('dlick')
+                              let tempArr = []
+                              tasks.forEach((doc, key) => {
+                                if (key === index) {
+                                  tempArr.push({
+                                    task: doc.task,
+                                    status: 'complete'
+                                  })
 
-                        </button>
+                                } else {
+                                  tempArr.push(doc)
+                                }
+                              })
+                              console.log(tempArr)
+                              setTasks(tempArr)
+                              localStorage.setItem('tasks', JSON.stringify(tempArr))
+                            }}
+                            className='w-full h-full'>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 px-3 w-full  " fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </button>
+                        </div>
+                        <div className='py-2 w-full'>
+                          {e.task}
+                        </div>
+                        <div className='px-3 bg-gray-800 rounded-r-xl  flex flex-col'>
+                          <div>
+                            <button onClick={() => {
+
+                            }}>
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+                              </svg>
+                            </button>
+                          </div>
+                          <div>
+                            <button>
+                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     ) : undefined
                   }
@@ -116,62 +117,62 @@ function Home({ data }) {
               Completed Tasks:
             </p>
             {
-              tempTasks.map((e, index) => (
-                <div className=''>
+              tasks.map((e, index) => (
+                <>
                   {
                     e.status === 'complete' ? (
-                      <div className='flex gap-x-5 ' >
-
-
-                        <div className='flex gap-x-4'>
-                          <div className='hover:opacity-50'>
-                            <button onClick={() => {
-                              let temp = []
-                              for (let i = 0; i < tempTasks.length; i++) {
-                                if (i !== index) {
-                                  temp.push(tempTasks[i])
-                                } else {
-                                  temp.push({
-                                    task: tempTasks[i].task,
+                      <div className='bg-gray-700 flex gap-x-3 rounded-xl'>
+                        <div className='bg-yellow-600 hover:bg-yellow-800  rounded-l-xl'>
+                          <button
+                            onClick={() => {
+                              console.log('dlick')
+                              let tempArr = []
+                              tasks.forEach((doc, key) => {
+                                if (key === index) {
+                                  tempArr.push({
+                                    task: doc.task,
                                     status: 'incomplete'
                                   })
+
+                                } else {
+                                  tempArr.push(doc)
                                 }
-                              }
-                              setTempTasks(temp)
-                              localStorage.setItem('tempTasks', JSON.stringify(temp))
-                            }}>
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                              </svg>
-                            </button>
-                          </div>
-                          <div>
-                            <s>  {e.task}</s>
-                          </div>
-                          <div className=''>
-                            <button onClick={() => {
-                              let temp = []
-                              for (let i = 0; i < tempTasks.length; i++) {
-                                if (i !== index) {
-                                  temp.push(tempTasks[i])
-                                }
-                              }
-                              setTempTasks(temp)
-                              localStorage.setItem('tempTasks', JSON.stringify(temp))
-                            }}>
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:text-red-900 transition text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                              </svg>
-                            </button>
-                          </div>
+                              })
+                              console.log(tempArr)
+                              setTasks(tempArr)
+                              localStorage.setItem('tasks', JSON.stringify(tempArr))
+                            }}
+                            className='w-full h-full'>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 px-3 w-full p" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                          </button>
                         </div>
-
-
-
+                        <div className='py-2 w-full'>
+                          <s>{e.task}</s>
+                        </div>
+                        <div className=' bg-red-600 hover:bg-red-700 rounded-r-xl '>
+                          <button
+                            onClick={() => {
+                              let temp = []
+                              for (let i = 0; i < tasks.length; i++) {
+                                if (i !== index) {
+                                  temp.push(tasks[i])
+                                }
+                              }
+                              setTasks(temp)
+                              localStorage.setItem('tasks', JSON.stringify(temp))
+                            }}
+                            className='w-full h-full px-3'>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     ) : undefined
                   }
-                </div>
+                </>
               )).reverse()
             }
           </div>
