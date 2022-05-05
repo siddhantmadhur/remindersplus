@@ -1,4 +1,5 @@
 # Reminders+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/remindersplus)
 
 ## Reminders+ is an open-source reminder app, that lets you save all your reminders on the cloud to be accessible by any device of your choice.
 
