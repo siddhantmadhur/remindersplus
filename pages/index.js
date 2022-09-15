@@ -49,29 +49,19 @@ function Home({ data }) {
               onChange={(e) => setPen(e.target.value)}
             />
             
-            <input
+            <button
               className="bg-gray-700 px-5 py-2 text-xl rounded-lg hover:bg-gray-800 hover:text-gray-400 transition"
               type="submit"
-              placeholder="submit"
-            />
+              
+            >Submit</button>
           </form>
         </div>
         <div className="flex justify-center">
           <div className="flex flex-col gap-y-3 text-lg mx-6 md:mx-20 w-full">
             <p className="mt-2">Tasks to-do:</p>
-            <input
-              onChange={(e) => setFilter(e.target.value)}
-              className="text-black px-2 py-3 rounded-lg"
-              value={filter}
-              type="text"
-              placeholder="Search"
-            />
             {tasks !== null ? (
               <div className="flex flex-col gap-y-3">
                 {tasks
-                  .filter((doc) => {
-                    return doc.task.includes(filter)
-                  })
                   .map((e, index) => (
                     <>
                       {e.status === "incomplete" ? (
