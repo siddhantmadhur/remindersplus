@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import CsvDownloadButton from "react-json-to-csv";
+import Link from "next/link";
 
 function Home({ data }) {
   const [tasks, setTasks] = useState([{}]);
   const [pen, setPen] = useState("");
   const [filter, setFilter] = useState("");
+  const [downloaded, setDownloaded] = useState(false);
+
+  useEffect(() => {
+    setDownloaded(false);
+  }, [tasks]);
 
   useEffect(() => {
     if (localStorage.getItem("tasks") === null) {
@@ -48,13 +55,32 @@ function Home({ data }) {
               placeholder="Reminder"
               onChange={(e) => setPen(e.target.value)}
             />
-            
+
             <button
               className="bg-gray-700 px-5 py-2 text-xl rounded-lg hover:bg-gray-800 hover:text-gray-400 transition"
               type="submit"
-              
-            >Submit</button>
+            >
+              Submit
+            </button>
           </form>
+        </div>
+        <div className="text-center flex mx-auto gap-x-5 flex-wrap">
+          <div className="mx-auto">
+            {downloaded ? (
+              <div>Check downloads folder.</div>
+            ) : (
+              <CsvDownloadButton
+                data={tasks}
+                onClick={() => {
+                  setDownloaded(true);
+                }}
+                filename="tasks.csv"
+              />
+            )}
+          </div>
+          <div>
+            <Link href={"/import"}>Import Data</Link>
+          </div>
         </div>
         <div className="flex justify-center">
           <div className="flex flex-col gap-y-3 text-lg mx-6 md:mx-20 w-full">
