@@ -71,9 +71,6 @@ function Home({ data }) {
             ) : (
               <CsvDownloadButton
                 data={tasks}
-                onClick={() => {
-                  setDownloaded(true);
-                }}
                 filename="tasks.csv"
               />
             )}
